@@ -1,14 +1,23 @@
+#include <QtWidgets>
 #include "analogclock.h"
-#include "ui_analogclock.h"
 
-AnalogClock::AnalogClock(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::AnalogClock)
+AnalogClock::AnalogClock(QWidget *parent)
+    : QWidget(parent)
 {
-    ui->setupUi(this);
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    timer->start(1000);
+
+    setWindowTitle(tr("Analog Clock"));
+    resize(200, 200);
 }
 
-AnalogClock::~AnalogClock()
+void AnalogClock::paintEvent(QPaintEvent *)
 {
-    delete ui;
+    static const QPoint hourHand[3] = {
+        QPoint(7, 8),
+        QPoint(-7,8),
+        QPoint(0, -40)
+    };
+
 }

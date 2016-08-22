@@ -1,22 +1,15 @@
 #ifndef ANALOGCLOCK_H
 #define ANALOGCLOCK_H
 
-#include <QMainWindow>
+#include <QWidget>
 
-namespace Ui {
-class AnalogClock;
-}
-
-class AnalogClock : public QMainWindow
+class AnalogClock : public QWidget
 {
     Q_OBJECT
-
 public:
-    explicit AnalogClock(QWidget *parent = 0);
-    ~AnalogClock();
-
-private:
-    Ui::AnalogClock *ui;
+    AnalogClock(QWidget *parent = 0);
+protected:
+    void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 };
 
-#endif // ANALOGCLOCK_H
+#endif
